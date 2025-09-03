@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 // Impor usePathname dari next/navigation
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function AdminNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,11 +13,12 @@ export default function AdminNavbar() {
   const pathname = usePathname();
 
   const handleLogout = () => {
-    console.log("Logged out");
+    signOut({ callbackUrl: "/login" });
+    // callbackUrl = arahkan user setelah logout
   };
 
   // Definisikan kelas untuk link
-  const linkClass = (path: string) => 
+  const linkClass = (path: string) =>
     pathname === path
       ? "bg-gray-800 text-white px-3 py-2 rounded-md text-sm font-medium" // Kelas saat aktif
       : "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"; // Kelas saat tidak aktif
