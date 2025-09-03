@@ -22,15 +22,10 @@ export async function GET(req: NextRequest, { params }: any) {
 }
 
 // UPDATE certificate
-export async function PUT(
-  req: NextRequest,
-  // UBAH BAGIAN INI
-  { params }: { params: { id: string } }
-) {
+export async function PUT(req: NextRequest, { params }: any) {
+  const { id } = params;
   try {
-    const { id } = params; // Logika ini sudah benar
     const data = await req.json();
-
     const cert = await prisma.certificate.update({
       where: { id },
       data: {
@@ -41,13 +36,9 @@ export async function PUT(
         image: data.image,
       },
     });
-
     return NextResponse.json(cert);
   } catch (error) {
-    return NextResponse.json(
-      { error: "Gagal update data" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Gagal update data" }, { status: 500 });
   }
 }
 
