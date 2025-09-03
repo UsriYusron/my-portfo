@@ -2,13 +2,18 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-type Context = {
-  params: { id: string };
-};
+// Hapus type Context ini, karena tidak diperlukan lagi
+// type Context = {
+//   params: { id: string };
+// };
 
 // GET single certificate
-export async function GET(req: NextRequest, context: Context) {
-  const { id } = context.params;
+export async function GET(
+  req: NextRequest,
+  // UBAH BAGIAN INI
+  { params }: { params: { id: string } }
+) {
+  const { id } = params; // Logika ini sudah benar
 
   const cert = await prisma.certificate.findUnique({
     where: { id },
@@ -21,9 +26,13 @@ export async function GET(req: NextRequest, context: Context) {
 }
 
 // UPDATE certificate
-export async function PUT(req: NextRequest, context: Context) {
+export async function PUT(
+  req: NextRequest,
+  // UBAH BAGIAN INI
+  { params }: { params: { id: string } }
+) {
   try {
-    const { id } = context.params;
+    const { id } = params; // Logika ini sudah benar
     const data = await req.json();
 
     const cert = await prisma.certificate.update({
@@ -47,9 +56,13 @@ export async function PUT(req: NextRequest, context: Context) {
 }
 
 // DELETE certificate
-export async function DELETE(req: NextRequest, context: Context) {
+export async function DELETE(
+  req: NextRequest,
+  // UBAH BAGIAN INI
+  { params }: { params: { id: string } }
+) {
   try {
-    const { id } = context.params;
+    const { id } = params; // Logika ini sudah benar
 
     await prisma.certificate.delete({
       where: { id },
