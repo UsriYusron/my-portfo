@@ -13,7 +13,7 @@ export default function CertificatesPage() {
   // State untuk mengelola dropdown mana yang sedang terbuka
   const [openDropdownId, setOpenDropdownId] = useState(null);
 
-  const toggleDropdown = (certId) => {
+  const toggleDropdown = (certId: any) => {
     setOpenDropdownId(openDropdownId === certId ? null : certId);
   };
 
