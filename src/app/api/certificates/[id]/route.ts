@@ -1,11 +1,7 @@
+
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-
-// Hapus type Context ini, karena tidak diperlukan lagi
-// type Context = {
-//   params: { id: string };
-// };
 
 // GET single certificate
 export async function GET(req: NextRequest, { params }: any) {
@@ -34,6 +30,7 @@ export async function PUT(req: NextRequest, { params }: any) {
         yearEnd: parseInt(data.yearEnd),
         link: data.link,
         image: data.image,
+        description: data.description,
       },
     });
     return NextResponse.json(cert);

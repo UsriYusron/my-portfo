@@ -1,16 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { Trash2Icon, PencilIcon, MoreVerticalIcon } from 'lucide-react';
+import { Trash2Icon, PencilIcon, MoreVerticalIcon, PlusIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function CertificatesPage() {
-  const [certs, setCerts] = useState<any[]>([]);
-  const [form, setForm] = useState({ publisher: "", yearGet: "", yearEnd: "", link: "", image: "", description: "" });
+  const [Projects, setProjects] = useState<any[]>([]);
+  const [form, setForm] = useState({ name: "", description: "", image: "", link: "" });
   const [editId, setEditId] = useState<string | null>(null);
 
   // 1. Buat state untuk melacak visibilitas, nilai awalnya false (tersembunyi)
-  const [showCerts, setShowCerts] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
 
   // State untuk mengelola dropdown mana yang sedang terbuka
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -20,53 +20,51 @@ export default function CertificatesPage() {
   };
 
   // Ambil semua data
-  async function fetchCerts() {
-    const res = await fetch("/api/certificates");
+  async function fetchProjects() {
+    const res = await fetch("/api/projects");
     const data = await res.json();
-    setCerts(data);
+    setProjects(data);
   }
 
   useEffect(() => {
-    fetchCerts();
+    fetchProjects();
   }, []);
 
   // Tambah atau Update
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (editId) {
-      await fetch(`/api/certificates/${editId}`, {
+      await fetch(`/api/projects/${editId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
       setEditId(null);
     } else {
-      await fetch("/api/certificates", {
+      await fetch("/api/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
     }
-    setForm({ publisher: "", yearGet: "", yearEnd: "", link: "", image: "", description: "" });
-    fetchCerts();
+    setForm({ name: "", description: "", image: "", link: ""  });
+    fetchProjects();
   }
 
   // Delete
   async function handleDelete(id: string) {
-    await fetch(`/api/certificates/${id}`, { method: "DELETE" });
-    fetchCerts();
+    await fetch(`/api/projects/${id}`, { method: "DELETE" });
+    fetchProjects();
   }
 
   // Edit
-  function handleEdit(cert: any) {
-    setEditId(cert.id);
+  function handleEdit(projects: any) {
+    setEditId(projects.id);
     setForm({
-      publisher: cert.publisher,
-      yearGet: cert.yearGet,
-      yearEnd: cert.yearEnd,
-      link: cert.link,
-      image: cert.image,
-      description: cert.description,
+      description: projects.description,
+      name: projects.name,
+      image: projects.image,
+      link: projects.link,
     });
   }
 
@@ -86,10 +84,10 @@ export default function CertificatesPage() {
           <div className="flex items-center gap-4 mb-6">
             <div className="bg-indigo-100 p-2 rounded-lg">
               {/* Anda bisa menambahkan ikon di sini jika mau */}
-              {/* {editId ? <IconEdit /> : <IconAdd />} */}
+              {editId ? <PencilIcon /> : <PlusIcon />}
             </div>
             <h2 className="text-2xl font-bold text-slate-800">
-              {editId ? "Update Certificate" : "Add New Certificate"}
+              {editId ? "Update Certificate" : "Add New Project"}
             </h2>
           </div>
 
@@ -99,44 +97,14 @@ export default function CertificatesPage() {
             {/* Input Publisher */}
             <div className="md:col-span-2">
               <label htmlFor="publisher" className="block text-sm font-medium text-slate-700 mb-1">
-                Publisher
+                Judul
               </label>
               <input
                 id="publisher"
                 type="text"
-                placeholder="e.g., Google, Dicoding"
-                value={form.publisher}
-                onChange={(e) => setForm({ ...form, publisher: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
-              />
-            </div>
-
-            {/* Input Tahun Mulai */}
-            <div>
-              <label htmlFor="yearGet" className="block text-sm font-medium text-slate-700 mb-1">
-                Start Year
-              </label>
-              <input
-                id="yearGet"
-                type="number"
-                placeholder="2023"
-                value={form.yearGet}
-                onChange={(e) => setForm({ ...form, yearGet: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
-              />
-            </div>
-
-            {/* Input Tahun Selesai */}
-            <div>
-              <label htmlFor="yearEnd" className="block text-sm font-medium text-slate-700 mb-1">
-                End Year (Optional)
-              </label>
-              <input
-                id="yearEnd"
-                type="number"
-                placeholder="2025"
-                value={form.yearEnd || ''}
-                onChange={(e) => setForm({ ...form, yearEnd: e.target.value })}
+                placeholder="e.g., Web Portfolio With Next.js"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
               />
             </div>
@@ -159,12 +127,12 @@ export default function CertificatesPage() {
             {/* Input Link & URL Gambar */}
             <div className="md:col-span-2">
               <label htmlFor="link" className="block text-sm font-medium text-slate-700 mb-1">
-                Credential Link
+                Project Link
               </label>
               <input
                 id="link"
                 type="text"
-                placeholder="https://credential.link/..."
+                placeholder="https://project-link.github/..."
                 value={form.link}
                 onChange={(e) => setForm({ ...form, link: e.target.value })}
                 className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
@@ -190,7 +158,7 @@ export default function CertificatesPage() {
                 type="submit"
                 className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
               >
-                {editId ? "Update Certificate" : "Add Certificate"}
+                {editId ? "Update Project" : "Add Project"}
               </button>
 
               {/* Tombol Batal hanya muncul saat mode edit */}
@@ -209,35 +177,35 @@ export default function CertificatesPage() {
 
         <Button
           variant="link"
-          onClick={() => setShowCerts(!showCerts)} // Mengubah dari false -> true,
+          onClick={() => setShowProjects(!showProjects)} // Mengubah dari false -> true,
           className="mb-5"
         >
           <header className="mb-8">
             <h1 className="text-3xl font-bold text-slate-800">My Certificates</h1>
-            <p className="mt-1 text-slate-500">{showCerts ? "Koleksi semua sertifikasi dan pencapaian Anda." : "Klik untuk menampilkan koleksi sertifikasi."}</p>
+            <p className="mt-1 text-slate-500">{showProjects ? "Koleksi semua sertifikasi dan pencapaian Anda." : "Klik untuk menampilkan koleksi sertifikasi."}</p>
           </header>
         </Button>
 
         {/* 3. Gunakan state untuk menampilkan div secara kondisional */}
-        {showCerts && (
+        {showProjects && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certs.map((cert) => (
-              <div key={cert.id} className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
+            {Projects.map((project) => (
+              <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
 
                 {/* Gambar Kartu */}
                 <div className="relative">
-                  <img src={cert.image} alt={cert.publisher} className="w-full h-48 object-cover" />
+                  <img src={project.image} alt={project.publisher} className="w-full h-48 object-cover" />
                   <div className="absolute top-0 right-0 p-2">
                     <div className="relative">
-                      <button onClick={() => toggleDropdown(cert.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition">
+                      <button onClick={() => toggleDropdown(project.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition">
                         <MoreVerticalIcon />
                       </button>
-                      {openDropdownId === cert.id && (
+                      {openDropdownId === project.id && (
                         <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-xl z-10 py-1">
-                          <button onClick={() => { handleEdit(cert); toggleDropdown(cert.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">
+                          <button onClick={() => { handleEdit(project); toggleDropdown(project.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">
                             <PencilIcon /> Edit
                           </button>
-                          <button onClick={() => { handleDelete(cert.id); toggleDropdown(cert.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                          <button onClick={() => { handleDelete(project.id); toggleDropdown(project.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
                             <Trash2Icon /> Delete
                           </button>
                         </div>
@@ -248,16 +216,12 @@ export default function CertificatesPage() {
 
                 {/* Konten Kartu */}
                 <div className="p-5">
-                  <p className="text-sm font-semibold text-indigo-600">{cert.publisher}</p>
-                  <h3 className="mt-1 text-lg font-bold text-slate-800 truncate" title={cert.title}>
-                    {cert.title}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-2 text-sm text-slate-500">
-                    {/* <CalendarIcon /> */}
-                    <span>{cert.yearGet} - {cert.yearEnd || 'Present'}</span>
-                  </div>
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-800 group-hover:underline">
-                    Lihat Kredensial {/* <ExternalLinkIcon /> */}
+                  <p className="text-sm font-semibold text-indigo-600">{project.name}</p>
+                  <h1 className="mt-1 text-sm text-slate-800 truncate" title={project.description}>
+                    {project.description}
+                  </h1>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-800 group-hover:underline">
+                    Link Project {/* <ExternalLinkIcon /> */}
                   </a>
                 </div>
               </div>

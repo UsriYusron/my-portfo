@@ -25,6 +25,7 @@ export async function POST(req: Request) {
         yearEnd: parseInt(data.yearEnd), // ✅ convert ke Int
         link: data.link,
         image: data.image,
+        description: data.description,
       },
     });
 

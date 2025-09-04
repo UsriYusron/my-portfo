@@ -1,0 +1,50 @@
+import prisma from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+
+// get single project
+export async function GET(req: NextRequest, { params }: any) {
+    const { id } = params;
+
+    const project = await prisma.project.findUnique({
+        where: { id },
+    });
+
+    if (!project) {
+        return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json(project);
+}
+
+// UPDATE project
+export async function PUT(req: NextRequest, { params }: any) {
+    const { id } = params;
+    try {
+        const data = await req.json();
+        const projects = await prisma.project.update({
+            where: { id },
+            data: {
+                description: data.description,
+                name: data.name,
+                image: data.image,
+                link: data.link,
+            },
+        });
+        return NextResponse.json(projects);
+    } catch (error) {
+        return NextResponse.json({ error: "Gagal update data" }, { status: 500 });
+    }
+}
+
+// DELETE project
+export async function DELETE(req: NextRequest, { params }: any) {
+    const { id } = params;
+
+    try {
+        await prisma.project.delete({
+            where: { id },
+        });
+        return NextResponse.json({ message: "Berhasil dihapus" });
+    } catch (error) {
+        return NextResponse.json({ error: "Gagal hapus data" }, { status: 500 });
+    }
+}

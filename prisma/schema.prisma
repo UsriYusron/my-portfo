@@ -30,6 +30,7 @@ model Certificate {
   link      String?
   image     String?
   description String?
+  title String?
   createdAt DateTime @default(now())
 }
 
