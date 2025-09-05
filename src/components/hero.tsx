@@ -3,13 +3,9 @@ import Image from "next/image"
 import LazyVideo from "./lazy-video"
 
 export function Hero() {
-  const buttonNew = (
-    <Button asChild className="rounded-full bg-lime-400 px-6 text-black hover:bg-lime-300 mr-3">
-      <a href="https://wa.me/6283827406460" target="_blank" rel="noopener noreferrer">
-        Chat With Me
-      </a>
-    </Button>
-  )
+  // const buttonNew = (
+
+  // )
 
   return (
     <section className="relative isolate overflow-hidden">
@@ -24,7 +20,18 @@ export function Hero() {
             <span className="block text-lime-300 drop-shadow-[0_0_20px_rgba(132,204,22,0.35)]">T0 DIGITAL EXPERIENCE</span>
             {/* <span className="block">SOLUTION MODERN</span> */}
           </h1>
-          <div className="mt-6">{buttonNew}</div>
+          <div className="mt-6">
+            <Button asChild className="rounded-full bg-lime-400 px-6 text-black hover:bg-lime-300 mr-3">
+              <a href="https://wa.me/6283827406460" target="_blank" rel="noopener noreferrer">
+                Chat With Me
+              </a>
+            </Button>
+            <Button asChild className="rounded-full bg-purple-400 px-6 text-black hover:bg-purple-300 mr-3">
+              <a href="/cv/CV - MUHAMAD USRI YUSRON.pdf" target="_blank" rel="noopener noreferrer">
+                Download My CV
+              </a>
+            </Button>
+          </div>
 
           {/* Phone grid mimic */}
           {/* <div className="mt-10 grid w-full gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
