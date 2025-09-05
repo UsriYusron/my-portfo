@@ -9,18 +9,18 @@ export function LogoMarquee() {
 
   // Logo data with colors and content
   const logos = [
-    { name: "Intel", content: "intel", color: "text-neutral-300" },
-    { name: "MongoDB", content: "🟢", color: "text-green-500" },
-    { name: "Skitbit", content: "image", color: "text-neutral-300", image: "/images/skitbit-subtle-logo.png" },
-    { name: "VK", content: "VK", color: "text-white", bg: "bg-blue-500" },
-    { name: "TechCrunch", content: "TC", color: "text-neutral-300" },
-    { name: "MailChimp", content: "🐵", color: "text-yellow-500" },
-    { name: "ESJ", content: "image", color: "text-neutral-300", image: "/images/esj-subtle-logo.png" },
-    { name: "Kickstarter", content: "K", color: "text-white", bg: "bg-green-500" },
+    { name: "PHP", content: "image", color: "text-neutral-300", image: "/images/php.svg" },
+    { name: "MongoDB", content: "image", color: "text-green-500", image: "/images/mongo.svg" },
+    { name: "Laravel", content: "image", color: "text-neutral-300", image: "/images/laravel.svg" },
+    { name: "Python", content: "image", color: "text-white", bg: "bg-blue-500", image: "/images/python.svg" },
+    { name: "Next.js", content: "image", color: "text-neutral-300", image: "/images/next.svg" },
+    { name: "Javascript", content: "image", color: "text-yellow-500", image: "/images/js.svg" },
+    { name: "Github", content: "image", color: "text-neutral-300", image: "/images/github.svg" },
+    { name: "OpenCV", content: "image", color: "text-white", bg: "bg-green-500", image: "/images/open.svg" },
   ]
 
   const secondRowLogos = [
-    { name: "StumbleUpon", content: "🔴", color: "text-red-500" },
+    { name: "Taiwind", content: "image", color: "text-neutral-300", image: "/images/tailwind.svg" },
     { name: "Microsoft", content: "⊞", color: "text-neutral-400" },
     { name: "CleanMyMac", content: "🌈", color: "text-purple-400" },
     { name: "Google", content: "G", color: "text-neutral-300" },
@@ -64,9 +64,9 @@ export function LogoMarquee() {
         {/* Header */}
         <div className="flex flex-col items-center justify-between mb-12 sm:flex-row sm:items-center">
           <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl text-center sm:text-left">
-            Meet our <span className="text-lime-300">top-tier</span>
+            Know my <span className="text-lime-300">top-tier</span>
             <br />
-            customers
+            technologies
           </h2>
           <Button variant="outline" className="mt-4 sm:mt-0 liquid-glass hover:liquid-glass-enhanced bg-transparent">
             Learn More

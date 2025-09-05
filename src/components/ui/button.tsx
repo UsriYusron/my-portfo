@@ -9,13 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-blue-600 text-white hover:bg-blue-600/90 cursor-pointer",
+        default: "bg-lime-600 hover:bg-lime-400/90 cursor-pointer",
         destructive:
           "bg-red-600 text-white hover:bg-red-600/90 cursor-pointer",
         outline:
           "border border-input bg-background cursor-pointer hover:bg-accent hover:text-accent-foreground", // Tidak diubah
         secondary:
-          "bg-slate-200 text-slate-800 hover:bg-slate-200/80 cursor-pointer",
+          "bg-blue-700 text-slate-800 hover:bg-blue-700/80 cursor-pointer",
         ghost: "hover:bg-slate-100 hover:text-slate-900 cursor-pointer",
         link: "text-blue-600 underline-offset-4 cursor-pointer",
       },

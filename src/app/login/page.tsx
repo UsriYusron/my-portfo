@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -32,13 +34,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md bg-transparant border border-gray-300 shadow-lg rounded-2xl p-8">
+        <h2 className="text-2xl font-bold text-center mb-6">
           Login Akun
         </h2>
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5 mb-5">
           {error && (
             <p className="text-red-600 bg-red-50 border border-red-200 rounded-md p-2 text-sm">
               {error}
@@ -48,7 +50,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium mb-1"
             >
               Email
             </label>
@@ -66,7 +68,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium mb-1"
             >
               Password
             </label>
@@ -81,14 +83,24 @@ export default function LoginPage() {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
+            variant="secondary"
             disabled={isLoading}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full text-white py-2 rounded-lg transition disabled:opacity-50"
           >
             {isLoading ? "Please wait..." : "Login"}
-          </button>
+          </Button>
         </form>
+        <hr />
+        <Link href="/">
+          <Button
+            variant="default"
+            className="w-full mt-5 py-2 rounded-lg transition disabled:opacity-50"
+          >Kembali
+
+          </Button>
+        </Link>
       </div>
     </div>
   );

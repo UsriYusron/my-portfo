@@ -21,14 +21,7 @@ export function SiteHeader() {
         <div className="flex h-14 items-center justify-between px-6 liquid-glass-header rounded-full">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-1.5">
-            <Image
-              src="/icons/skitbit-white.svg"
-              alt="Skitbit logo"
-              width={20}
-              height={20}
-              className="h-5 w-5"
-            />
-            <span className="font-semibold tracking-wide text-white">Skitbit</span>
+            <span className="font-semibold tracking-wide text-white">UsriYusron</span>
           </Link>
 
           {/* Desktop Nav */}
@@ -109,7 +102,7 @@ export function SiteHeader() {
                                hover:bg-lime-300 hover:shadow-md hover:scale-[1.02]
                                transition-all"
                   >
-                    <Link href="https://wa.link/65mf3i">Get a Quote</Link>
+                    <Link href="https://wa.link/65mf3i">Send me a message</Link>
                   </Button>
                 </div>
               </SheetContent>
