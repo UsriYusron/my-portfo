@@ -4,8 +4,8 @@ import LazyVideo from "./lazy-video"
 
 export function Hero() {
   const buttonNew = (
-    <Button asChild className="rounded-full bg-lime-400 px-6 text-black hover:bg-lime-300">
-      <a href="https://wa.link/rc25na" target="_blank" rel="noopener noreferrer">
+    <Button asChild className="rounded-full bg-lime-400 px-6 text-black hover:bg-lime-300 mr-3">
+      <a href="https://wa.me/6283827406460" target="_blank" rel="noopener noreferrer">
         Chat With Me
       </a>
     </Button>

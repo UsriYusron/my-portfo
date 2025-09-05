@@ -17,17 +17,18 @@ export function LogoMarquee() {
     { name: "Javascript", content: "image", color: "text-yellow-500", image: "/images/js.svg" },
     { name: "Github", content: "image", color: "text-neutral-300", image: "/images/github.svg" },
     { name: "OpenCV", content: "image", color: "text-white", bg: "bg-green-500", image: "/images/open.svg" },
+    { name: "MySQL", content: "image", color: "text-neutral-300", image: "/images/mysql.svg" },
   ]
 
   const secondRowLogos = [
     { name: "Taiwind", content: "image", color: "text-neutral-300", image: "/images/tailwind.svg" },
-    { name: "Microsoft", content: "⊞", color: "text-neutral-400" },
-    { name: "CleanMyMac", content: "🌈", color: "text-purple-400" },
-    { name: "Google", content: "G", color: "text-neutral-300" },
-    { name: "Behance", content: "Be", color: "text-white", bg: "bg-blue-500" },
-    { name: "Apple", content: "🍎", color: "text-neutral-300" },
-    { name: "TransferWise", content: "✓", color: "text-white", bg: "bg-green-500" },
-    { name: "Medium", content: "M", color: "text-neutral-300" },
+    { name: "Bootstrap", content: "image", color: "text-neutral-300", image: "/images/boot.svg" },
+    { name: "HTML", content: "image", color: "text-neutral-300", image: "/images/html.svg" },
+    { name: "MySQL", content: "image", color: "text-neutral-300", image: "/images/mysql.svg" },
+    { name: "Git", content: "image", color: "text-neutral-300", image: "/images/git.svg" },
+    { name: "SQL", content: "image", color: "text-neutral-300", image: "/images/sql.svg" },
+    { name: "Next.js", content: "image", color: "text-neutral-300", image: "/images/next.svg" },
+    { name: "MongoDB", content: "image", color: "text-green-500", image: "/images/mongo.svg" },
   ]
 
   const LogoCard = ({ logo, rowId }: { logo: any; rowId: string }) => (
@@ -59,7 +60,7 @@ export function LogoMarquee() {
   )
 
   return (
-    <section className="text-white py-16 sm:py-20 overflow-hidden">
+    <section id="skill" className="text-white py-16 sm:py-20 overflow-hidden">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col items-center justify-between mb-12 sm:flex-row sm:items-center">
@@ -68,9 +69,6 @@ export function LogoMarquee() {
             <br />
             technologies
           </h2>
-          <Button variant="outline" className="mt-4 sm:mt-0 liquid-glass hover:liquid-glass-enhanced bg-transparent">
-            Learn More
-          </Button>
         </div>
 
         {/* Logo Marquee */}
