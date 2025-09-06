@@ -3,14 +3,8 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-interface RouteParams {
-  params: {
-    id: string;
-  };
-}
-
 // GET single certificate
-export async function GET(req: NextRequest, { params }: RouteParams) {
+export async function GET(req: NextRequest, { params }: any) {
   const { id } = params;
 
   const cert = await prisma.certificate.findUnique({
@@ -24,7 +18,7 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
 }
 
 // UPDATE certificate
-export async function PUT(req: NextRequest, { params }: RouteParams) {
+export async function PUT(req: NextRequest, { params }: any) {
   const { id } = params;
   try {
     const data = await req.json();
@@ -46,7 +40,7 @@ export async function PUT(req: NextRequest, { params }: RouteParams) {
 }
 
 // DELETE certificate
-export async function DELETE(req: NextRequest, { params }: RouteParams) {
+export async function DELETE(req: NextRequest, { params }: any) {
   const { id } = params;
 
   try {
