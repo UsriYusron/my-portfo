@@ -105,7 +105,7 @@ export default function CertificatesPage() {
                 placeholder="e.g., Web Portfolio With Next.js"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-black"
               />
             </div>
 
@@ -119,7 +119,7 @@ export default function CertificatesPage() {
                 cols={30} rows={5}
                 value={form.description || ''}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-black">
 
               </textarea>
             </div>
@@ -135,7 +135,7 @@ export default function CertificatesPage() {
                 placeholder="https://project-link.github/..."
                 value={form.link}
                 onChange={(e) => setForm({ ...form, link: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-black"
               />
             </div>
             <div className="md:col-span-2">
@@ -148,7 +148,7 @@ export default function CertificatesPage() {
                 placeholder="https://image.url/..."
                 value={form.image}
                 onChange={(e) => setForm({ ...form, image: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-black"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function CertificatesPage() {
             <div className="md:col-span-2 flex items-center gap-4 mt-2">
               <button
                 type="submit"
-                className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
+                className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition text-black"
               >
                 {editId ? "Update Project" : "Add Project"}
               </button>
@@ -181,8 +181,8 @@ export default function CertificatesPage() {
           className="mb-5"
         >
           <header className="mb-8">
-            <h1 className="text-3xl font-bold text-slate-800">My Certificates</h1>
-            <p className="mt-1 text-slate-500">{showProjects ? "Koleksi semua sertifikasi dan pencapaian Anda." : "Klik untuk menampilkan koleksi sertifikasi."}</p>
+            <h1 className="text-3xl font-bold text-slate-800">My Projects</h1>
+            <p className="mt-1 text-slate-500">{showProjects ? "Koleksi semua projek dan pencapaian Anda." : "Klik untuk menampilkan koleksi projek."}</p>
           </header>
         </Button>
 
@@ -197,7 +197,7 @@ export default function CertificatesPage() {
                   <img src={project.image} alt={project.publisher} className="w-full h-48 object-cover" />
                   <div className="absolute top-0 right-0 p-2">
                     <div className="relative">
-                      <button onClick={() => toggleDropdown(project.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition">
+                      <button onClick={() => toggleDropdown(project.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition text-black">
                         <MoreVerticalIcon />
                       </button>
                       {openDropdownId === project.id && (

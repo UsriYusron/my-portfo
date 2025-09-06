@@ -11,9 +11,9 @@ export function LogoMarquee() {
   const logos = [
     { name: "PHP", content: "image", color: "text-neutral-300", image: "/images/php.svg" },
     { name: "MongoDB", content: "image", color: "text-green-500", image: "/images/mongo.svg" },
+    { name: "Next.js", content: "image", color: "text-neutral-300", image: "/images/next.svg" },
     { name: "Laravel", content: "image", color: "text-neutral-300", image: "/images/laravel.svg" },
     { name: "Python", content: "image", color: "text-white", bg: "bg-blue-500", image: "/images/python.svg" },
-    { name: "Next.js", content: "image", color: "text-neutral-300", image: "/images/next.svg" },
     { name: "Javascript", content: "image", color: "text-yellow-500", image: "/images/js.svg" },
     { name: "Github", content: "image", color: "text-neutral-300", image: "/images/github.svg" },
     { name: "OpenCV", content: "image", color: "text-white", bg: "bg-green-500", image: "/images/open.svg" },

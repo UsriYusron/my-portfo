@@ -3,8 +3,14 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+interface RouteParams {
+  params: {
+    id: string;
+  };
+}
+
 // GET single certificate
-export async function GET(req: NextRequest, { params }: any) {
+export async function GET(req: NextRequest, { params }: RouteParams) {
   const { id } = params;
 
   const cert = await prisma.certificate.findUnique({
@@ -18,7 +24,7 @@ export async function GET(req: NextRequest, { params }: any) {
 }
 
 // UPDATE certificate
-export async function PUT(req: NextRequest, { params }: any) {
+export async function PUT(req: NextRequest, { params }: RouteParams) {
   const { id } = params;
   try {
     const data = await req.json();
@@ -34,13 +40,13 @@ export async function PUT(req: NextRequest, { params }: any) {
       },
     });
     return NextResponse.json(cert);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Gagal update data" }, { status: 500 });
   }
 }
 
 // DELETE certificate
-export async function DELETE(req: NextRequest, { params }: any) {
+export async function DELETE(req: NextRequest, { params }: RouteParams) {
   const { id } = params;
 
   try {
@@ -48,7 +54,7 @@ export async function DELETE(req: NextRequest, { params }: any) {
       where: { id },
     });
     return NextResponse.json({ message: "Berhasil dihapus" });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Gagal hapus data" }, { status: 500 });
   }
 }

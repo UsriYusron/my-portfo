@@ -84,8 +84,23 @@ const premiumVideos = [
 ]
 
 export function Pricing() {
+  const [Projects, setProjects] = useState<any[]>([]);
+  const [form, setForm] = useState({ name: "", description: "", image: "", link: "" });
+
   const [openPlan, setOpenPlan] = useState<null | "Startup" | "Pro" | "Premium">(null)
   const [currency, setCurrency] = useState<Currency>("USD")
+
+
+  // Ambil semua data
+  async function fetchProjects() {
+    const res = await fetch("/api/projects");
+    const data = await res.json();
+    setProjects(data);
+  }
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   useEffect(() => {
     let cancelled = false
@@ -109,17 +124,11 @@ export function Pricing() {
     <section id="pricing" className="text-white" itemScope itemType="https://schema.org/PriceSpecification">
       <div className="container mx-auto px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
-          <div
-            className="mx-auto mb-4 inline-flex items-center rounded-full px-3 py-1 text-xs font-medium"
-            style={{ backgroundColor: "rgba(198,255,58,0.12)", color: ACCENT }}
-          >
-            Our Pricing and Packages
-          </div>
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl" itemProp="name">
-            Our Pricing.
+            My Projects.
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-400" itemProp="description">
-            No hidden fees. Just world-class animation that fits your budget.
+            No copyright issues. Evaluate my work and hire me to join your team.
           </p>
           <div className="mt-6">
             <Button
@@ -136,72 +145,81 @@ export function Pricing() {
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {/* Startup */}
-          <Card
-            className="relative overflow-hidden rounded-2xl liquid-glass shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-all duration-300"
-            itemScope
-            itemType="https://schema.org/Offer"
-          >
-            <div
-              className="absolute right-4 top-11 rounded-full px-2 py-0.5 text-[10px]"
-              style={{ backgroundColor: "#1f1f1f", color: "#d4d4d4" }}
+          {Projects.map((project) => (
+            <Card
+              key={project.name}
+              className="relative overflow-hidden rounded-2xl liquid-glass shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-all duration-300"
+              itemScope
+              itemType="https://schema.org/Offer"
             >
-              {PRICES[currency].save}
-            </div>
+              {/* {Projects.map((project) => () */}
+              <CardHeader className="space-y-3 pb-4">
+                {/* <div className="flex items-end gap-2 text-neutral-100">
+                  <div className="text-xl font-bold tracking-tight" itemProp="price">
+                    {PRICES[currency].startup}
+                  </div>
+                  <span className="pb-0.5 text-[11px] text-neutral-400">per video</span>
+                  <meta itemProp="priceCurrency" content={currency} />
+                </div> */}
+                {/* <div className="flex gap-2 mb-10">
+                  <Button
+                    type="button"
+                    onClick={() => setOpenPlan("Startup")}
+                    onTouchStart={() => setOpenPlan("Startup")}
+                    className="flex-1 rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                    style={{
+                      backgroundColor: "#0a0a0a",
+                      color: "#ffffff",
+                      border: "1px solid #333",
+                    }}
+                  >
+                    View Example
+                  </Button>
+                  <Button
+                    asChild
+                    className="flex-1 rounded-full px-4 py-2 text-sm font-medium text-black shadow transition-[box-shadow,transform,filter] active:translate-y-[1px]"
+                    style={{ backgroundColor: ACCENT }}
+                  >
+                    <Link href="/checkout?plan=startup">Select</Link>
+                  </Button>
+                </div> */}
+                <img src={project.image} alt={project.publisher} className="w-full h-48 object-cover" />
 
-            <CardHeader className="space-y-3 pb-4">
-              <div className="text-sm font-semibold text-neutral-200" itemProp="name">
-                Startup
-              </div>
-              <div className="flex items-end gap-2 text-neutral-100">
-                <div className="text-xl font-bold tracking-tight" itemProp="price">
-                  {PRICES[currency].startup}
+                <div className="text-md font-bold text-white" itemProp="name" title={project.name}>
+                  {project.name}
                 </div>
-                <span className="pb-0.5 text-[11px] text-neutral-400">per video</span>
-                <meta itemProp="priceCurrency" content={currency} />
-              </div>
-              <div className="flex gap-2">
-                <Button
-                  type="button"
-                  onClick={() => setOpenPlan("Startup")}
-                  onTouchStart={() => setOpenPlan("Startup")}
-                  className="flex-1 rounded-full px-4 py-2 text-sm font-medium transition-colors"
-                  style={{
-                    backgroundColor: "#0a0a0a",
-                    color: "#ffffff",
-                    border: "1px solid #333",
-                  }}
-                >
-                  View Example
-                </Button>
-                <Button
-                  asChild
-                  className="flex-1 rounded-full px-4 py-2 text-sm font-medium text-black shadow transition-[box-shadow,transform,filter] active:translate-y-[1px]"
-                  style={{ backgroundColor: ACCENT }}
-                >
-                  <Link href="/checkout?plan=startup">Select</Link>
-                </Button>
-              </div>
-            </CardHeader>
 
-            <CardContent className="pt-0">
-              <ul className="grid gap-2" itemProp="description">
-                {[
-                  "10–15s Reel/Teaser (1 SKU)",
-                  "Simple background + lighting",
-                  "1 revision",
-                  "Delivered in 10 days",
-                  "Social reel/ad-ready visuals",
-                  "3D Modelling - Included",
-                ].map((f, i) => (
-                  <FeatureItem key={i} text={f} />
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter />
-          </Card>
+                <Link href={project.link}>
+                  <Button
+                    variant="default"
+                    onClick={() => setOpenPlan("Startup")}
+                    onTouchStart={() => setOpenPlan("Startup")}
+                    className="flex-1 rounded-full text-sm font-medium transition-colors"
+                  > Open Source
+                  </Button>
+                </Link>
+              </CardHeader>
+
+              <CardContent className="pt-0">
+                <ul className="grid grid-cols-2" itemProp="description">
+                  {[
+                    "10–15s Reel/Teaser (1 SKU)",
+                    "Simple background + lighting",
+                    "1 revision",
+                    "Delivered in 10 days",
+                    "Social reel/ad-ready visuals",
+                    "3D Modelling - Included",
+                  ].map((f, i) => (
+                    <FeatureItem key={i} text={f} />
+                  ))}
+                </ul>
+              </CardContent>
+              <CardFooter />
+            </Card>
+          ))}
 
           {/* Pro */}
-          <Card
+          {/* <Card
             className="relative overflow-hidden rounded-2xl liquid-glass shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-all duration-300"
             itemScope
             itemType="https://schema.org/Offer"
@@ -257,10 +275,10 @@ export function Pricing() {
               </ul>
             </CardContent>
             <CardFooter />
-          </Card>
+          </Card> */}
 
           {/* Premium */}
-          <Card
+          {/* <Card
             className="relative overflow-hidden rounded-2xl liquid-glass-enhanced shadow-[0_16px_50px_rgba(0,0,0,0.4)] transition-all duration-300"
             itemScope
             itemType="https://schema.org/Offer"
@@ -318,7 +336,7 @@ export function Pricing() {
               </ul>
             </CardContent>
             <CardFooter />
-          </Card>
+          </Card> */}
         </div>
       </div>
 

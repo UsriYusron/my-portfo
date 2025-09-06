@@ -1,3 +1,6 @@
+"use client";
+import { useEffect, useState } from "react";
+
 import { SiteHeader } from "@/components/site-header"
 import { Hero } from "@/components/hero"
 import { Features } from "@/components/features"
@@ -10,6 +13,20 @@ import Script from "next/script"
 export const dynamic = "force-static"
 
 export default function Page() {
+  const [Projects, setProjects] = useState<any[]>([]);
+  const [form, setForm] = useState({ name: "", description: "", image: "", link: "" });
+
+  // Ambil semua data
+  async function fetchProjects() {
+    const res = await fetch("/api/projects");
+    const data = await res.json();
+    setProjects(data);
+  }
+  
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
   // Structured data for pricing
   const pricingStructuredData = {
     "@context": "https://schema.org",
