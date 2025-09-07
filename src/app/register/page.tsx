@@ -5,6 +5,8 @@ import { Card } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
+import {AccessDeniedIllustration} from "@/components/access-denied-illustration"
+
 export default function AccessDeniedPage() {
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
@@ -25,17 +27,7 @@ export default function AccessDeniedPage() {
           <div className="relative mx-auto w-32 h-32 mb-8">
             <div className="absolute inset-0 bg-primary/10 rounded-full animate-pulse"></div>
             <div className="relative flex items-center justify-center w-full h-full">
-              <svg
-                className="w-16 h-16 text-primary animate-bounce"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" strokeWidth="2" />
-                <circle cx="12" cy="16" r="1" fill="currentColor" />
-                <path d="M7 11V7a5 5 0 0 1 10 0v4" strokeWidth="2" />
-              </svg>
+              <AccessDeniedIllustration /> 
             </div>
           </div>
         </div>

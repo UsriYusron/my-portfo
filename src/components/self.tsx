@@ -17,7 +17,7 @@ const defaultContent: FeaturesContent = {
   subtitle: "Discover my unique approach to web development",
 }
 
-export function Features() {
+export function Self() {
   const [content, setContent] = useState<FeaturesContent>(defaultContent)
 
   useEffect(() => {

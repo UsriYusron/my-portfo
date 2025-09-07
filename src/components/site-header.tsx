@@ -12,8 +12,8 @@ export function SiteHeader() {
     { href: "#skill", label: "Skill", icon: Code },
     { href: "#project", label: "Project", icon: FolderGit2 },
     // { href: "faq", label: "FAQ", icon: HelpCircle },
+    { href: "#certificate", label: "Certificate", icon: Info },
     { href: "#blog", label: "Blog", icon: Code },
-    { href: "About", label: "About", icon: Info },
   ]
 
   return (
@@ -69,14 +69,14 @@ export function SiteHeader() {
               >
                 {/* Brand Header */}
                 <div className="flex items-center gap-1.5 px-4 py-4 border-b border-gray-800">
-                  <Image
+                  {/* <Image
                     src="/icons/skitbit-white.svg"
                     alt="Skitbit logo"
                     width={24}
                     height={24}
                     className="h-6 w-6"
-                  />
-                  <span className="font-semibold tracking-wide text-white text-lg">Skitbit</span>
+                  /> */}
+                  <span className="font-semibold tracking-wide text-white text-lg">UsriYusron</span>
                 </div>
 
                 {/* Nav Links */}
@@ -103,7 +103,7 @@ export function SiteHeader() {
                                hover:bg-lime-300 hover:shadow-md hover:scale-[1.02]
                                transition-all"
                   >
-                    <Link href="https://wa.link/65mf3i">Send me a message</Link>
+                    <Link href="https://wa.me/6283827406460">Send me a message</Link>
                   </Button>
                 </div>
               </SheetContent>

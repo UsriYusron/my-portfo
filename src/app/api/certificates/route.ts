@@ -26,6 +26,7 @@ export async function POST(req: Request) {
         link: data.link,
         image: data.image,
         description: data.description,
+        title: data.title,
       },
     });
 

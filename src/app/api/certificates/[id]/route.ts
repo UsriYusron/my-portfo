@@ -31,6 +31,7 @@ export async function PUT(req: NextRequest, { params }: any) {
         link: data.link,
         image: data.image,
         description: data.description,
+        title: data.title,
       },
     });
     return NextResponse.json(cert);

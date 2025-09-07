@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import Image from "next/image"
 
-export function LogoMarquee() {
+export function Skill() {
   const [pausedRow, setPausedRow] = useState<string | null>(null)
 
   // Logo data with colors and content
