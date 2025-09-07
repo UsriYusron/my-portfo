@@ -262,13 +262,32 @@ export default function Game() {
     // Add CSS to encourage landscape mode
     const style = document.createElement("style")
     style.textContent = `
+/* Definisikan animasi untuk memudarkan elemen */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 @media screen and (max-width: 768px) and (orientation: portrait) {
   body::before {
-    content: "Please rotate your device to landscape mode for the best experience";
+    content: "Please rotate your device to landscape mode for the best experience or use your computer";
     position: fixed;
-    top: 20px;
+
+    /* Properti untuk menengahkan elemen */
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+
+    /* Properti untuk animasi menghilang setelah 20 detik */
+    animation: fadeOut 1s 6s forwards;
+
+    /* Properti styling lainnya (tetap sama) */
     background: rgba(0, 0, 0, 0.9);
     color: white;
     padding: 15px 20px;
@@ -276,7 +295,7 @@ export default function Game() {
     z-index: 9999;
     text-align: center;
     font-size: 16px;
-    max-width: 90%;
+    max-width: 100%;
     box-sizing: border-box;
   }
 }
