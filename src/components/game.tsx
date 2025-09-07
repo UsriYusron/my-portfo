@@ -253,12 +253,11 @@ export default function Game() {
   // Add this useEffect at the beginning of the component, after the state declarations
   useEffect(() => {
     // Force landscape orientation on mobile devices
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock("landscape").catch(() => {
-        // Fallback if orientation lock fails
-        console.log("Orientation lock not supported")
-      })
-    }
+    if (screen.orientation && (screen.orientation as any).lock) {
+        (screen.orientation as any).lock("landscape").catch(() => {
+          console.log("Orientation lock not supported")
+        })
+   }
 
     // Add CSS to encourage landscape mode
     const style = document.createElement("style")
@@ -1766,7 +1765,7 @@ export default function Game() {
                 id: keyId,
                 type: "key",
                 name: "Vault Key",
-                keyId: (treasure as any).keyId,
+                // keyId: (treasure as any).keyId,
               })
               setPickupMessage("Vault Key picked up!")
               setTimeout(() => setPickupMessage(null), 2000)
