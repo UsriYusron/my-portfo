@@ -16,15 +16,15 @@ export async function GET(req: NextRequest, { params }: any) {
 }
 
 // Definisikan tipe untuk context di sini
-type RouteContext = {
-    params: {
-        id: any; // Gunakan 'string' daripada 'any' untuk type safety
-    };
-};
+// type RouteContext = {
+//     params: {
+//         id: any; // Gunakan 'string' daripada 'any' untuk type safety
+//     };
+// };
 
 // UPDATE project
-export async function PUT(req: NextRequest, context: RouteContext) {
-    const { id } = context.params;
+export async function PUT(req: NextRequest, { params }: any) {
+    const { id } = params;
 
     try {
         const data = await req.json();
@@ -46,8 +46,8 @@ export async function PUT(req: NextRequest, context: RouteContext) {
 }
 
 // DELETE project
-export async function DELETE(req: NextRequest, context: RouteContext) {
-    const { id } = context.params;
+export async function DELETE(req: NextRequest, { params }: any) {
+    const { id } = params;
 
     try {
         await prisma.project.delete({
