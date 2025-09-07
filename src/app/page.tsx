@@ -9,6 +9,7 @@ import { Project } from "@/components/projects";
 import { Certificate } from "@/components/certificate";
 import {Footer} from "@/components/footer";
 import Loader from "@/components/Loader";
+import Game from "@/components/game";
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ export default function Page() {
           <Skill />
           <Project />
           <Certificate />
+          <Game />
           <Footer />
         </main>
       )}
