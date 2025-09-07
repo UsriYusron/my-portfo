@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { Key, useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
@@ -121,7 +121,7 @@ export function Pricing() {
   }, [])
 
   return (
-    <section id="pricing" className="text-white" itemScope itemType="https://schema.org/PriceSpecification">
+    <section id="project" className="text-white" itemScope itemType="https://schema.org/PriceSpecification">
       <div className="container mx-auto px-4 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl" itemProp="name">
@@ -189,28 +189,20 @@ export function Pricing() {
                   {project.name}
                 </div>
 
-                <Link href={project.link}>
+                <Link href={project.link} target="_blank" rel="noopener noreferrer">
                   <Button
                     variant="default"
-                    onClick={() => setOpenPlan("Startup")}
-                    onTouchStart={() => setOpenPlan("Startup")}
                     className="flex-1 rounded-full text-sm font-medium transition-colors"
-                  > Open Source
+                  > Open On Github
                   </Button>
                 </Link>
               </CardHeader>
 
               <CardContent className="pt-0">
+                <h3 className="text-md font-bold text-white mb-1">Tech Stack:</h3>
                 <ul className="grid grid-cols-2" itemProp="description">
-                  {[
-                    "10–15s Reel/Teaser (1 SKU)",
-                    "Simple background + lighting",
-                    "1 revision",
-                    "Delivered in 10 days",
-                    "Social reel/ad-ready visuals",
-                    "3D Modelling - Included",
-                  ].map((f, i) => (
-                    <FeatureItem key={i} text={f} />
+                  {project.tech && project.tech.map((techName: string, index: Key | null | undefined) => (
+                    <FeatureItem key={index} text={techName} />
                   ))}
                 </ul>
               </CardContent>

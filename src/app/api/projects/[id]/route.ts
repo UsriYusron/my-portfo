@@ -16,21 +16,28 @@ export async function GET(req: NextRequest, { params }: any) {
 }
 
 // UPDATE project
-export async function PUT(req: NextRequest, { params }: any) {
-    const { id } = params;
+export async function PUT(
+    req: NextRequest,
+    { params }: { params: { id: any} } // Memberi tipe yang benar
+) {
+
     try {
         const data = await req.json();
         const projects = await prisma.project.update({
-            where: { id },
+            where: {
+                id: params.id, // <-- LANGSUNG GUNAKAN params.id DI SINI
+            },
             data: {
                 description: data.description,
                 name: data.name,
                 image: data.image,
                 link: data.link,
+                tech: data.tech,
             },
         });
         return NextResponse.json(projects);
     } catch (error) {
+        console.error("UPDATE_ERROR:", error); // Tambahkan log untuk debugging
         return NextResponse.json({ error: "Gagal update data" }, { status: 500 });
     }
 }

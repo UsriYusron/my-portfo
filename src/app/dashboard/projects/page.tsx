@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export default function CertificatesPage() {
   const [Projects, setProjects] = useState<any[]>([]);
-  const [form, setForm] = useState({ name: "", description: "", image: "", link: "" });
+  const [form, setForm] = useState({ name: "", description: "", image: "", link: "", tech: "" });
   const [editId, setEditId] = useState<string | null>(null);
 
   // 1. Buat state untuk melacak visibilitas, nilai awalnya false (tersembunyi)
@@ -15,8 +15,8 @@ export default function CertificatesPage() {
   // State untuk mengelola dropdown mana yang sedang terbuka
   const [openDropdownId, setOpenDropdownId] = useState(null);
 
-  const toggleDropdown = (certId: any) => {
-    setOpenDropdownId(openDropdownId === certId ? null : certId);
+  const toggleDropdown = (projectID: any) => {
+    setOpenDropdownId(openDropdownId === projectID ? null : projectID);
   };
 
   // Ambil semua data
@@ -33,21 +33,28 @@ export default function CertificatesPage() {
   // Tambah atau Update
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    const payload = {
+      ...form,
+      tech: form.tech.split(",").map(t => t.trim()), // convert ke array
+    };
+
     if (editId) {
       await fetch(`/api/projects/${editId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
       setEditId(null);
     } else {
       await fetch("/api/projects", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
     }
-    setForm({ name: "", description: "", image: "", link: ""  });
+
+    setForm({ name: "", description: "", image: "", link: "", tech: "" });
     fetchProjects();
   }
 
@@ -65,6 +72,7 @@ export default function CertificatesPage() {
       name: projects.name,
       image: projects.image,
       link: projects.link,
+      tech: projects.tech ? projects.tech.join(", ") : "", // gabung array ke string
     });
   }
 
@@ -82,7 +90,7 @@ export default function CertificatesPage() {
 
           {/* Header untuk form */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="bg-indigo-100 p-2 rounded-lg">
+            <div className="bg-lime-500 p-2 rounded-lg">
               {/* Anda bisa menambahkan ikon di sini jika mau */}
               {editId ? <PencilIcon /> : <PlusIcon />}
             </div>
@@ -123,6 +131,25 @@ export default function CertificatesPage() {
 
               </textarea>
             </div>
+
+            {/* Tech/Stack */}
+            <div className="md:col-span-2">
+              <label htmlFor="tech" className="block text-sm font-medium text-slate-700 mb-1">
+                Tech / Stack
+              </label>
+              <input
+                id="tech"
+                type="text"
+                placeholder="e.g., Next.js, Tailwind, MongoDB"
+                value={form.tech || ""}
+                onChange={(e) => setForm({ ...form, tech: e.target.value })}
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-black"
+              />
+              <p className="text-xs text-slate-500 mt-1">
+                Pisahkan dengan koma, contoh: <span className="italic">Next.js, Tailwind, MongoDB</span>
+              </p>
+            </div>
+
 
             {/* Input Link & URL Gambar */}
             <div className="md:col-span-2">

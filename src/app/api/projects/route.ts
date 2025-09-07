@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-// get all certificate
+// get all project
 export async function GET() {
     try {
         const projets = await prisma.project.findMany();
@@ -12,7 +12,7 @@ export async function GET() {
     }
 }
 
-// create new project 
+// create new project
 export async function POST(req: Request) {
     try {
         const data = await req.json();
@@ -23,12 +23,16 @@ export async function POST(req: Request) {
                 name: data.name,
                 image: data.image,
                 link: data.link,
+                tech: data.tech,
             },
         });
 
         return new Response(JSON.stringify(projects), { status: 201 });
     } catch (error) {
         console.error(error);
-        return new Response(JSON.stringify({ error: "Failed to create certificate" }), { status: 500 });
+        return new Response(
+            JSON.stringify({ error: "Failed to create project" }),
+            { status: 500 }
+        );
     }
 }
