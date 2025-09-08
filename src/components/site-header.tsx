@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Image from "next/image"
-import { Menu, Briefcase, FolderGit2, HelpCircle, Code, Info } from "lucide-react"
+import { Menu, Briefcase, FolderGit2, HelpCircle, Code, BookOpenCheck } from "lucide-react"
 
 export function SiteHeader() {
   const links = [
@@ -12,7 +12,7 @@ export function SiteHeader() {
     { href: "#skill", label: "Skill", icon: Code },
     { href: "#project", label: "Project", icon: FolderGit2 },
     // { href: "faq", label: "FAQ", icon: HelpCircle },
-    { href: "#certificate", label: "Certificate", icon: Info },
+    { href: "#certificate", label: "Certificate", icon: BookOpenCheck },
     { href: "#blog", label: "Blog", icon: Code },
   ]
 
@@ -69,13 +69,6 @@ export function SiteHeader() {
               >
                 {/* Brand Header */}
                 <div className="flex items-center gap-1.5 px-4 py-4 border-b border-gray-800">
-                  {/* <Image
-                    src="/icons/skitbit-white.svg"
-                    alt="Skitbit logo"
-                    width={24}
-                    height={24}
-                    className="h-6 w-6"
-                  /> */}
                   <span className="font-semibold tracking-wide text-white text-lg">UsriYusron</span>
                 </div>
 

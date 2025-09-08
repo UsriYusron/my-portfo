@@ -36,7 +36,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-transparant border border-gray-300 shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">
+        <h2 className="text-2xl font-bold text-center mb-6 text-white">
           Login Akun
         </h2>
 
@@ -50,7 +50,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium mb-1"
+              className="block text-sm font-medium mb-1 text-white"
             >
               Email
             </label>
@@ -61,14 +61,14 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="contoh@email.com"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium mb-1"
+              className="block text-sm font-medium mb-1 text-white"
             >
               Password
             </label>
@@ -79,7 +79,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Masukkan password Anda"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-white"
             />
           </div>
 

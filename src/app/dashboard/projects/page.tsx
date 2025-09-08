@@ -86,11 +86,11 @@ export default function CertificatesPage() {
       Form dibungkus dalam 'card' putih dengan shadow untuk memisahkannya 
       secara visual dari daftar di bawah.
     */}
-        <div className="bg-white sm:p-8 rounded-xl shadow-md mb-10">
+        <div className="bg-white sm:p-8 rounded-xl p-4 shadow-md mb-10">
 
           {/* Header untuk form */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="bg-lime-500 p-2 rounded-lg">
+            <div className="bg-lime-400 p-2 rounded-lg">
               {/* Anda bisa menambahkan ikon di sini jika mau */}
               {editId ? <PencilIcon /> : <PlusIcon />}
             </div>
