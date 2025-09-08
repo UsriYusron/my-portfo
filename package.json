@@ -51,5 +51,8 @@
       "native",
       "debian-openssl-1.1.x"
     ]
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
