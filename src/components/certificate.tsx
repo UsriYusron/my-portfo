@@ -58,7 +58,7 @@ export function Certificate() {
   }, [])
 
   return (
-    <section className="text-white">
+    <section className="">
       {/* Contact CTA */}
       <div className="container mx-auto">
         <TextReveal>You've scrolled this far but you're not sure for hiring me 🤔?</TextReveal>
