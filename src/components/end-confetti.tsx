@@ -10,6 +10,7 @@ import { CoolMode } from "@/components/ui/cool-mode"
 
 export function Conf() {
     const confettiRef = useRef<ConfettiRef>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     return (
         <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
@@ -51,6 +52,7 @@ export function Conf() {
             />
             <div className="flex gap-x-4 z-10 mt-10">
                 <CoolMode
+                    ref={buttonRef}
                     options={{
                         particle:
                             "/images/hahaha.png",
