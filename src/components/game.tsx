@@ -276,7 +276,7 @@ export default function Game() {
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
   body::before {
-    content: "Please rotate your device to landscape mode for the best experience or use your computer";
+    content: "For the best experience, please use your computer or rotate your device to landscape mode";
     position: fixed;
 
     /* Properti untuk menengahkan elemen */

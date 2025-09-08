@@ -11,10 +11,10 @@ export function Conf() {
 
     return (
         <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
-            <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+            <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-5xl tracking-tight sm:text-8xl font-semibold leading-none dark:from-white dark:to-slate-900/10">
                 The End.
             </span>
-            {/* <p className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-2xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
+            {/* <p className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-2xl font-semibold leading-none dark:from-white dark:to-slate-900/10">
             You've reached the end, now hire me
         </p> */}
             <HeroHighlight>
@@ -31,7 +31,7 @@ export function Conf() {
                         duration: 0.5,
                         ease: [0.4, 0.0, 0.2, 1],
                     }}
-                    className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-2xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10"
+                    className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-sm tracking-tight sm:text-2xl font-semibold leading-none dark:from-white dark:to-slate-900/10"
                 >
                     You've reached the end.{" "}
                     <Highlight className="text-black dark:text-white">
