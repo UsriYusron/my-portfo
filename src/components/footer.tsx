@@ -98,13 +98,13 @@ export function Footer() {
                   <li className="flex items-center gap-2">
                     <MessageCircle className="h-4 w-4 text-neutral-400" />
                     <a
-                      href="#"
+                      href="https://wa.me/6283827406460"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-lime-300"
                       aria-label="Follow skitbit on Threads"
                     >
-                      Threads
+                      WhatsApp
                     </a>
                   </li>
                 </ul>
