@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button"
-import Image from "next/image"
-// import LazyVideo from "./lazy-video"
 
 export function Hero() {
   // const buttonNew = (

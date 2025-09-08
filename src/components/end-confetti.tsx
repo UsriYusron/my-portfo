@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 
 import { Confetti, type ConfettiRef } from "@/components/ui/confetti"
 import { HeroHighlight, Highlight } from "./ui/hero-highlight";
+import { Button } from "@/components/ui/button"
+import { CoolMode } from "@/components/ui/cool-mode"
 
 export function Conf() {
     const confettiRef = useRef<ConfettiRef>(null);
@@ -35,7 +37,7 @@ export function Conf() {
                 >
                     You've reached the end.{" "}
                     <Highlight className="text-black dark:text-white">
-                    Now hire me!
+                        Now hire me!
                     </Highlight>
                 </motion.h1>
             </HeroHighlight>
@@ -47,6 +49,21 @@ export function Conf() {
                     confettiRef.current?.fire({});
                 }}
             />
+            <div className="flex gap-x-4 z-10 mt-10">
+                <CoolMode
+                    options={{
+                        particle:
+                            "/images/hahaha.png",
+                    }}
+                >
+                    <Button>Hold Me!</Button>
+                </CoolMode>
+                <Button asChild className="">
+                    <a href="mailto:muhamad.usriyusron@gmail.com" target="_blank" rel="noopener noreferrer">
+                        Send me an email
+                    </a>
+                </Button>
+            </div>
         </div>
     );
 }
