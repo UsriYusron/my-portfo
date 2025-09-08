@@ -254,10 +254,10 @@ export default function Game() {
   useEffect(() => {
     // Force landscape orientation on mobile devices
     if (screen.orientation && (screen.orientation as any).lock) {
-        (screen.orientation as any).lock("landscape").catch(() => {
-          console.log("Orientation lock not supported")
-        })
-   }
+      (screen.orientation as any).lock("landscape").catch(() => {
+        console.log("Orientation lock not supported")
+      })
+    }
 
     // Add CSS to encourage landscape mode
     const style = document.createElement("style")
@@ -1230,7 +1230,7 @@ export default function Game() {
 
         // Play equip sound
         if (walkSoundRef.current && (walkSoundRef.current as any).equip) {
-          ;(walkSoundRef.current as any).equip()
+          ; (walkSoundRef.current as any).equip()
         }
 
         return {
@@ -1269,7 +1269,7 @@ export default function Game() {
 
         // Play equip sound
         if (walkSoundRef.current && (walkSoundRef.current as any).equip) {
-          ;(walkSoundRef.current as any).equip()
+          ; (walkSoundRef.current as any).equip()
         }
 
         return {
@@ -1409,7 +1409,7 @@ export default function Game() {
   const fightEnemy = () => {
     // Play attack sound
     if (walkSoundRef.current && (walkSoundRef.current as any).attack) {
-      ;(walkSoundRef.current as any).attack()
+      ; (walkSoundRef.current as any).attack()
     }
 
     setGameState((prev) => {
@@ -1424,7 +1424,7 @@ export default function Game() {
         // Play enemy death sound
         setTimeout(() => {
           if (walkSoundRef.current && (walkSoundRef.current as any).enemyDeath) {
-            ;(walkSoundRef.current as any).enemyDeath()
+            ; (walkSoundRef.current as any).enemyDeath()
           }
         }, 100)
 
@@ -1439,7 +1439,7 @@ export default function Game() {
         // Play enemy hit sound
         setTimeout(() => {
           if (walkSoundRef.current && (walkSoundRef.current as any).enemyHit) {
-            ;(walkSoundRef.current as any).enemyHit()
+            ; (walkSoundRef.current as any).enemyHit()
           }
         }, 50)
 
@@ -1478,7 +1478,7 @@ export default function Game() {
           // Play game over sound
           setTimeout(() => {
             if (walkSoundRef.current && (walkSoundRef.current as any).gameOver) {
-              ;(walkSoundRef.current as any).gameOver()
+              ; (walkSoundRef.current as any).gameOver()
             }
           }, 200)
 
@@ -1702,7 +1702,7 @@ export default function Game() {
             if (!isWalking) {
               setIsWalking(true)
               if (walkSoundRef.current && (walkSoundRef.current as any).walk) {
-                ;(walkSoundRef.current as any).walk()
+                ; (walkSoundRef.current as any).walk()
               }
               setTimeout(() => setIsWalking(false), 400)
             }
@@ -1773,7 +1773,7 @@ export default function Game() {
           if (distance < TILE_SIZE) {
             // Play treasure sound
             if (walkSoundRef.current && (walkSoundRef.current as any).treasure) {
-              ;(walkSoundRef.current as any).treasure(treasure.type)
+              ; (walkSoundRef.current as any).treasure(treasure.type)
             }
 
             // Handle different treasure types
@@ -1927,7 +1927,7 @@ export default function Game() {
 
               // Play door unlock sound
               if (walkSoundRef.current && (walkSoundRef.current as any).doorUnlock) {
-                ;(walkSoundRef.current as any).doorUnlock()
+                ; (walkSoundRef.current as any).doorUnlock()
               }
 
               setPickupMessage("Door unlocked! Vault revealed!")
@@ -1947,7 +1947,7 @@ export default function Game() {
 
           // Play level complete sound
           if (walkSoundRef.current && (walkSoundRef.current as any).levelComplete) {
-            ;(walkSoundRef.current as any).levelComplete()
+            ; (walkSoundRef.current as any).levelComplete()
           }
 
           setTimeout(() => {
@@ -2441,6 +2441,11 @@ export default function Game() {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
         <div className="flex flex-col items-center space-y-6">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl" itemProp="name">
+              Let's Play Game!
+            </h2>
+          </div>
           {/* Title Image */}
           <img
             src="/images/title-screen.png"
@@ -2542,7 +2547,7 @@ export default function Game() {
                 ⚔️ Fight
               </Button>
               <Button onClick={fleeFromEnemy} className="flex-1 bg-yellow-600 hover:bg-yellow-700 text-xs py-1">
-                🏃 Flee
+                🏃 Run
               </Button>
             </div>
           </CardContent>
@@ -2555,9 +2560,8 @@ export default function Game() {
   if (gameState.showInventory) {
     return (
       <div
-        className={`flex flex-col items-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-700 p-4 ${
-          deviceType === "desktop" ? "justify-start" : "justify-center"
-        }`}
+        className={`flex flex-col items-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-700 p-4 ${deviceType === "desktop" ? "justify-start" : "justify-center"
+          }`}
       >
         {/* Game Title */}
         <h1 className="text-2xl font-bold text-amber-100 mb-4">Cohen's Exploration Adventure</h1>
@@ -2653,7 +2657,7 @@ export default function Game() {
                   onClick={() => {
                     // Play inventory sound
                     if (walkSoundRef.current && (walkSoundRef.current as any).inventory) {
-                      ;(walkSoundRef.current as any).inventory(!gameState.showInventory)
+                      ; (walkSoundRef.current as any).inventory(!gameState.showInventory)
                     }
                     setGameState((prev) => ({ ...prev, showInventory: false }))
                   }}
@@ -2671,7 +2675,7 @@ export default function Game() {
           onClick={() => {
             // Play inventory sound
             if (walkSoundRef.current && (walkSoundRef.current as any).inventory) {
-              ;(walkSoundRef.current as any).inventory(!gameState.showInventory)
+              ; (walkSoundRef.current as any).inventory(!gameState.showInventory)
             }
             setGameState((prev) => ({ ...prev, showInventory: !prev.showInventory }))
           }}
@@ -2685,9 +2689,8 @@ export default function Game() {
 
   return (
     <div
-      className={`flex flex-col items-center min-h-screen p-4 ${
-        deviceType === "desktop" ? "justify-start" : "justify-center"
-      }`}
+      className={`flex flex-col items-center min-h-screen p-4 ${deviceType === "desktop" ? "justify-start" : "justify-center"
+        }`}
     >
       {/* Game Title */}
       {/* <h1 className="text-2xl font-bold text-amber-100 mb-4">Cohen's Exploration Adventure</h1> */}
@@ -2721,7 +2724,7 @@ export default function Game() {
         onClick={() => {
           // Play inventory sound
           if (walkSoundRef.current && (walkSoundRef.current as any).inventory) {
-            ;(walkSoundRef.current as any).inventory(!gameState.showInventory)
+            ; (walkSoundRef.current as any).inventory(!gameState.showInventory)
           }
           setGameState((prev) => ({ ...prev, showInventory: !prev.showInventory }))
         }}
