@@ -273,6 +273,7 @@ export default function Game() {
     visibility: hidden;
   }
 }
+  
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
   body::before {
