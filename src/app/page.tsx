@@ -9,7 +9,6 @@ import { Project } from "@/components/projects";
 import { Certificate } from "@/components/certificate";
 import {Footer} from "@/components/footer";
 import Loader from "@/components/Loader";
-import Game from "@/components/game";
 import {Conf} from "@/components/end-confetti"
 
 export default function Page() {
@@ -35,7 +34,6 @@ export default function Page() {
           <Skill />
           <Project />
           <Certificate />
-          <Game />
           <Conf />
           <Footer />
         </main>

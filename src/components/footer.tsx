@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 
-import { Instagram, Linkedin, Youtube, MessageCircle } from "lucide-react"
+import { Linkedin, Youtube } from "lucide-react"
 
 interface FooterContent {
     tagline: string
@@ -18,7 +18,7 @@ interface FooterContent {
   
 
 export function Footer() {
-  const [content, setContent] = useState<FooterContent>(defaultContent);
+  const [content] = useState<FooterContent>(defaultContent);
 
     const links = [
       { href: "/", label: "Home"},
@@ -84,7 +84,6 @@ export function Footer() {
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
-                    <Instagram className="h-4 w-4 text-neutral-400" />
                     <a
                       href="https://www.instagram.com/usri.yusron/"
                       target="_blank"
@@ -96,7 +95,6 @@ export function Footer() {
                     </a>
                   </li>
                   <li className="flex items-center gap-2">
-                    <MessageCircle className="h-4 w-4 text-neutral-400" />
                     <a
                       href="https://wa.me/6283827406460"
                       target="_blank"

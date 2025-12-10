@@ -4,31 +4,27 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card"
-import { Instagram, Twitter, Youtube, MessageCircle } from "lucide-react"
 import Image from "next/image"
 
 import { TextReveal } from "@/components/ui/text-reveal"
 import { Lens } from "@/components/ui/lens"
 
-interface FooterContent {
-  tagline: string
-  copyright: string
-}
-
-const defaultContent: FooterContent = {
-  tagline: "Experience 3D animation like never before. We craft cinematic visuals for brands and products.",
-  copyright: "© 2025 — Skitbit International Uk",
+interface Certificate {
+  id: string;
+  publisher: string;
+  yearGet: string;
+  yearEnd: string;
+  link: string;
+  image: string;
+  description: string;
+  title: string;
 }
 
 export function Certificate() {
-  const [content, setContent] = useState<FooterContent>(defaultContent);
-  const [certs, setCerts] = useState<any[]>([]);
-
-
+  const [certs, setCerts] = useState<Certificate[]>([]);
   const [showAll, setShowAll] = useState(false);
   const initialItemsToShow = 3;
   const displayedCertificats = showAll ? certs : certs.slice(0, initialItemsToShow);
-
 
   // Ambil semua data
   async function fetchCerts() {
@@ -37,31 +33,15 @@ export function Certificate() {
     setCerts(data);
   }
 
-
   useEffect(() => {
     fetchCerts();
   }, []);
-
-  useEffect(() => {
-    // Load content from localStorage
-    const savedContent = localStorage.getItem("skitbit-content")
-    if (savedContent) {
-      try {
-        const parsed = JSON.parse(savedContent)
-        if (parsed.footer) {
-          setContent(parsed.footer)
-        }
-      } catch (error) {
-        console.error("Error parsing saved content:", error)
-      }
-    }
-  }, [])
 
   return (
     <section className="">
       {/* Contact CTA */}
       <div className="container mx-auto">
-        <TextReveal>You've scrolled this far but you're not sure for hiring me 🤔?</TextReveal>
+        <TextReveal>You&apos;ve scrolled this far but you&apos;re not sure for hiring me 🤔?</TextReveal>
       </div>
 
       <div className="mx-auto max-w-3xl text-center" id="certificate">
@@ -98,7 +78,7 @@ export function Certificate() {
                     isStatic={false}
                     ariaLabel="Zoom Area"
                   >
-                    <img
+                    <Image
                       src={cert.image}
                       alt={cert.publisher}
                       width={500}
@@ -114,28 +94,22 @@ export function Certificate() {
                 </CardContent>
                 <CardFooter className="space-x-4">
                   <Link href={cert.link} target="_blank" rel="noopener noreferrer" className="space-x-4">
-                    <Button>See Credential</Button>
+                    <Button>Open the Credential</Button>
                   </Link>
                 </CardFooter>
               </Card>
             ))}
           </div>
 
-          {/* Tampilkan tombol HANYA jika total proyek lebih dari batas awal */}
           {certs.length > initialItemsToShow && (
             <div className="mt-8 text-center">
-              {/* 1. Logika onClick diubah menjadi toggle */}
               <Button onClick={() => setShowAll(!showAll)} variant="default">
-                {/* 2. Teks tombol diubah secara dinamis */}
                 {showAll ? 'Hide Certificate' : 'See More...'}
               </Button>
             </div>
           )}
         </Card>
       </div>
-
-      {/* Footer */}
-
     </section>
   )
 }

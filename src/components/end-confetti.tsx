@@ -17,9 +17,6 @@ export function Conf() {
             <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-5xl tracking-tight sm:text-8xl font-semibold leading-none dark:from-white dark:to-slate-900/10">
                 The End.
             </span>
-            {/* <p className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-2xl font-semibold leading-none dark:from-white dark:to-slate-900/10">
-            You've reached the end, now hire me
-        </p> */}
             <HeroHighlight>
                 <motion.h1
                     initial={{
@@ -36,7 +33,7 @@ export function Conf() {
                     }}
                     className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-sm tracking-tight sm:text-2xl font-semibold leading-none dark:from-white dark:to-slate-900/10"
                 >
-                    You've reached the end.{" "}
+                    You&apos;ve reached the end.{" "}
                     <Highlight className="text-black dark:text-white">
                         Now hire me!
                     </Highlight>

@@ -41,14 +41,14 @@ export default function AccessDeniedPage() {
           <div className="space-y-6">
             {/* Header */}
             <div className="space-y-3">
-              <h1 className="text-3xl font-bold text-foreground text-balance">Oops! You Don't Have Access</h1>
-              <p className="text-lg text-muted-foreground text-pretty">It seems you've stumbled upon a locked door.</p>
+              <h1 className="text-3xl font-bold text-foreground text-balance">Oops! You Don&apos;t Have Access</h1>
+              <p className="text-lg text-muted-foreground text-pretty">It seems you&apos;ve stumbled upon a locked door.</p>
             </div>
 
             {/* Supportive Text */}
             <div className="space-y-4">
               <p className="text-muted-foreground text-pretty">
-              I'm sorry you can't access the registration feature. If you believe this is an error, please contact me ASAP.
+              I&apos;m sorry you can&apos;t access the registration feature. If you believe this is an error, please contact me ASAP.
               </p>
 
               {/* Action Buttons */}

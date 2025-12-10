@@ -1,9 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Image from "next/image"
-import { Star } from "lucide-react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BrainCircuit, Handshake, MessagesSquare, Rocket, Anchor, } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 

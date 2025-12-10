@@ -4,8 +4,17 @@ import { useEffect, useState } from "react";
 import { Trash2Icon, PencilIcon, MoreVerticalIcon, PlusIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+  tech: string[];
+}
+
 export default function CertificatesPage() {
-  const [Projects, setProjects] = useState<any[]>([]);
+  const [Projects, setProjects] = useState<Project[]>([]);
   const [form, setForm] = useState({ name: "", description: "", image: "", link: "", tech: "" });
   const [editId, setEditId] = useState<string | null>(null);
 
@@ -13,9 +22,9 @@ export default function CertificatesPage() {
   const [showProjects, setShowProjects] = useState(false);
 
   // State untuk mengelola dropdown mana yang sedang terbuka
-  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
-  const toggleDropdown = (projectID: any) => {
+  const toggleDropdown = (projectID: string) => {
     setOpenDropdownId(openDropdownId === projectID ? null : projectID);
   };
 
@@ -65,7 +74,7 @@ export default function CertificatesPage() {
   }
 
   // Edit
-  function handleEdit(projects: any) {
+  function handleEdit(projects: Project) {
     setEditId(projects.id);
     setForm({
       description: projects.description,

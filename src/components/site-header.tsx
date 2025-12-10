@@ -3,15 +3,13 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Image from "next/image"
-import { Menu, Briefcase, FolderGit2, HelpCircle, Code, BookOpenCheck } from "lucide-react"
+import { Menu, Briefcase, FolderGit2, Code, BookOpenCheck } from "lucide-react"
 
 export function SiteHeader() {
   const links = [
     { href: "/", label: "Home", icon: Briefcase },
     { href: "#skill", label: "Skill", icon: Code },
     { href: "#project", label: "Project", icon: FolderGit2 },
-    // { href: "faq", label: "FAQ", icon: HelpCircle },
     { href: "#certificate", label: "Certificate", icon: BookOpenCheck },
     { href: "#blog", label: "Blog", icon: Code },
   ]

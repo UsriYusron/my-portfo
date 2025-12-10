@@ -1,8 +1,15 @@
+
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+interface RouteContext {
+  params: {
+    id: string;
+  };
+}
+
 // get single project
-export async function GET(req: NextRequest, { params }: any) {
+export async function GET(req: NextRequest, { params }: RouteContext) {
     const { id } = params;
 
     const project = await prisma.project.findUnique({
@@ -15,15 +22,8 @@ export async function GET(req: NextRequest, { params }: any) {
     return NextResponse.json(project);
 }
 
-// Definisikan tipe untuk context di sini
-// type RouteContext = {
-//     params: {
-//         id: any; // Gunakan 'string' daripada 'any' untuk type safety
-//     };
-// };
-
 // UPDATE project
-export async function PUT(req: NextRequest, { params }: any) {
+export async function PUT(req: NextRequest, { params }: RouteContext) {
     const { id } = params;
 
     try {
@@ -46,7 +46,7 @@ export async function PUT(req: NextRequest, { params }: any) {
 }
 
 // DELETE project
-export async function DELETE(req: NextRequest, { params }: any) {
+export async function DELETE(req: NextRequest, { params }: RouteContext) {
     const { id } = params;
 
     try {

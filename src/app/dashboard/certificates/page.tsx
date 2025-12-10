@@ -4,8 +4,19 @@ import { useEffect, useState } from "react";
 import { Trash2Icon, PencilIcon, MoreVerticalIcon, PlusIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
+interface Certificate {
+  id: string;
+  publisher: string;
+  yearGet: string;
+  yearEnd: string;
+  link: string;
+  image: string;
+  description: string;
+  title: string;
+}
+
 export default function CertificatesPage() {
-  const [certs, setCerts] = useState<any[]>([]);
+  const [certs, setCerts] = useState<Certificate[]>([]);
   const [form, setForm] = useState({ publisher: "", yearGet: "", yearEnd: "", link: "", image: "", description: "", title: "" });
   const [editId, setEditId] = useState<string | null>(null);
 
@@ -13,9 +24,9 @@ export default function CertificatesPage() {
   const [showCerts, setShowCerts] = useState(false);
 
   // State untuk mengelola dropdown mana yang sedang terbuka
-  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
 
-  const toggleDropdown = (certId: any) => {
+  const toggleDropdown = (certId: string) => {
     setOpenDropdownId(openDropdownId === certId ? null : certId);
   };
 
@@ -58,7 +69,7 @@ export default function CertificatesPage() {
   }
 
   // Edit
-  function handleEdit(cert: any) {
+  function handleEdit(cert: Certificate) {
     setEditId(cert.id);
     setForm({
       publisher: cert.publisher,

@@ -5,8 +5,18 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { CheckCircle2 } from "lucide-react"
+import Image from "next/image"
 
 type Feature = { text: string; muted?: boolean }
+
+interface Project {
+  id: string;
+  name: string;
+  description: string;
+  image: string;
+  link: string;
+  tech: string[];
+}
 
 const ACCENT = "#C6FF3A"
 
@@ -20,7 +30,7 @@ function FeatureItem({ text, muted = false }: Feature) {
 }
 
 export function Project() {
-  const [Projects, setProjects] = useState<any[]>([]);
+  const [Projects, setProjects] = useState<Project[]>([]);
 
   const [showAll, setShowAll] = useState(false);
   const initialItemsToShow = 3;
@@ -50,7 +60,6 @@ export function Project() {
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {/* Gunakan 'displayedProjects' untuk me-render kartu */}
           {displayedProjects.map((project) => (
             <Card
               key={project.name}
@@ -59,7 +68,7 @@ export function Project() {
               itemType="https://schema.org/Offer"
             >
               <CardHeader className="space-y-3 pb-4">
-                <img src={project.image} alt={project.publisher} className="w-full h-48 object-cover" />
+                <Image src={project.image} alt={project.name} width={500} height={300} className="w-full h-48 object-cover" />
 
                 <div className="text-md font-bold text-white" itemProp="name" title={project.name}>
                   {project.name}
@@ -85,21 +94,14 @@ export function Project() {
           ))}
         </div>
 
-        {/* Tampilkan tombol HANYA jika total proyek lebih dari batas awal */}
         {Projects.length > initialItemsToShow && (
           <div className="mt-8 text-center">
-            {/* 1. Logika onClick diubah menjadi toggle */}
             <Button onClick={() => setShowAll(!showAll)} variant="default">
-              {/* 2. Teks tombol diubah secara dinamis */}
               {showAll ? 'Hide Project' : 'See More...'}
             </Button>
           </div>
         )}
       </div>
-
-      {/* </div> */}
-
-      {/* Modals */}
     </section>
   )
 }
