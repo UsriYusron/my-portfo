@@ -5,7 +5,6 @@ import React, {
   cloneElement,
   forwardRef,
   isValidElement,
-  ReactNode,
   useEffect,
   useRef,
 } from "react";
@@ -239,27 +238,23 @@ const applyParticleEffect = (
   };
 };
 
-// (Impor dan semua fungsi di atasnya tetap sama)
-
 interface CoolModeProps {
   children: React.ReactElement;
   options?: CoolParticleOptions;
 }
 
 export const CoolMode = forwardRef<HTMLElement, CoolModeProps>(({ children, options }, forwardedRef) => {
+  const internalRef = useRef<HTMLElement | null>(null);
 
-  const child = Children.only(children);
-
-  if (!isValidElement(child)) {
-    return children;
-  }
-  const combinedRef = (node: HTMLElement | null) => {
-    if (node) {
-      const cleanup = applyParticleEffect(node, options);
-      
+  useEffect(() => {
+    if (internalRef.current) {
+      const cleanup = applyParticleEffect(internalRef.current, options);
+      return cleanup;
     }
+  }, [options]);
 
-    // 2. Teruskan ref ke induk seperti sebelumnya.
+  const refCallback = (node: HTMLElement | null) => {
+    internalRef.current = node;
     if (typeof forwardedRef === "function") {
       forwardedRef(node);
     } else if (forwardedRef) {
@@ -267,42 +262,12 @@ export const CoolMode = forwardRef<HTMLElement, CoolModeProps>(({ children, opti
     }
   };
 
-  const internalRef = useRef<HTMLElement | null>(null);
+  const child = Children.only(children);
+  if (!isValidElement(child)) {
+    return children;
+  }
 
-  // useEffect ini akan menangani cleanup saat komponen unmount atau options berubah
-  useEffect(() => {
-    let cleanup: (() => void) | undefined;
-
-    if (internalRef.current) {
-      cleanup = applyParticleEffect(internalRef.current, options);
-    }
-
-    // Fungsi cleanup dari useEffect akan dipanggil saat komponen unmount
-    return () => {
-      if (cleanup) {
-        cleanup();
-      }
-    };
-  }, [options]); // Hanya bergantung pada options, karena elemen ref tidak seharusnya berubah
-
-  const refCallback = (node: HTMLElement | null) => {
-    internalRef.current = node;
-
-    // Meneruskan ref ke parent
-    if (typeof forwardedRef === 'function') {
-      forwardedRef(node);
-    } else if (forwardedRef) {
-      forwardedRef.current = node;
-    }
-
-    // PENTING: Panggil efek di sini saat node pertama kali tersedia
-    if (node) {
-      applyParticleEffect(node, options);
-    }
-  };
-
-  // cloneElement sekarang menggunakan callback ref yang baru
-  return cloneElement(child as React.ReactElement<any>, { ref: refCallback });
+  return cloneElement(child, { ref: refCallback });
 });
 
 CoolMode.displayName = "CoolMode";

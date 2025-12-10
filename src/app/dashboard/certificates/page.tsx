@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-
 import { Trash2Icon, PencilIcon, MoreVerticalIcon, PlusIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import dynamic from 'next/dynamic';
+
+const CertificateList = dynamic(() => import('./CertificateList'));
 
 interface Certificate {
   id: string;
@@ -175,13 +177,13 @@ export default function CertificatesPage() {
                 Description
               </label>
               <textarea
-                name="" id=""
-                cols={30} rows={5}
+                name=""
+                id=""
+                cols={30}
+                rows={5}
                 value={form.description || ''}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
-                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition">
-
-              </textarea>
+                className="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition"></textarea>
             </div>
 
             {/* Input Link & URL Gambar */}
@@ -216,8 +218,7 @@ export default function CertificatesPage() {
             <div className="md:col-span-2 flex items-center gap-4 mt-2">
               <button
                 type="submit"
-                className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition"
-              >
+                className="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition">
                 {editId ? "Update Certificate" : "Add Certificate"}
               </button>
 
@@ -226,8 +227,7 @@ export default function CertificatesPage() {
                 <button
                   type="button"
                   // onClick={handleCancelEdit} // Asumsi Anda punya fungsi ini
-                  className="text-sm font-medium text-slate-600 hover:text-slate-800"
-                >
+                  className="text-sm font-medium text-slate-600 hover:text-slate-800">
                   Cancel
                 </button>
               )}
@@ -238,8 +238,7 @@ export default function CertificatesPage() {
         <Button
           variant="link"
           onClick={() => setShowCerts(!showCerts)} // Mengubah dari false -> true,
-          className="mb-5"
-        >
+          className="mb-5">
           <header className="mb-8">
             <h1 className="text-3xl font-bold text-slate-800">My Certificates</h1>
             <p className="mt-1 text-slate-500">{showCerts ? "Koleksi semua sertifikasi dan pencapaian Anda." : "Klik untuk menampilkan koleksi sertifikasi."}</p>
@@ -248,49 +247,13 @@ export default function CertificatesPage() {
 
         {/* 3. Gunakan state untuk menampilkan div secara kondisional */}
         {showCerts && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certs.map((cert) => (
-              <div key={cert.id} className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
-
-                {/* Gambar Kartu */}
-                <div className="relative">
-                  <img src={cert.image} alt={cert.publisher} className="w-full h-48 object-cover" />
-                  <div className="absolute top-0 right-0 p-2">
-                    <div className="relative">
-                      <button onClick={() => toggleDropdown(cert.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition">
-                        <MoreVerticalIcon />
-                      </button>
-                      {openDropdownId === cert.id && (
-                        <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-xl z-10 py-1">
-                          <button onClick={() => { handleEdit(cert); toggleDropdown(cert.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">
-                            <PencilIcon /> Edit
-                          </button>
-                          <button onClick={() => { handleDelete(cert.id); toggleDropdown(cert.id); }} className="w-full text-left flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                            <Trash2Icon /> Delete
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Konten Kartu */}
-                <div className="p-5">
-                  <p className="text-sm font-semibold text-indigo-600">{cert.publisher}</p>
-                  <h3 className="mt-1 text-lg font-bold text-slate-800 truncate" title={cert.title}>
-                    {cert.title}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-2 text-sm text-slate-500">
-                    {/* <CalendarIcon /> */}
-                    <span>{cert.yearGet} - {cert.yearEnd || 'Present'}</span>
-                  </div>
-                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-800 group-hover:underline">
-                    Lihat Kredensial {/* <ExternalLinkIcon /> */}
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          <CertificateList
+            certs={certs}
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            toggleDropdown={toggleDropdown}
+            openDropdownId={openDropdownId}
+          />
         )}
       </main>
     </div>

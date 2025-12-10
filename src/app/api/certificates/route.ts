@@ -8,7 +8,7 @@ export async function GET() {
       orderBy: { yearGet: "desc" },
     });
     return NextResponse.json(certs);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Gagal ambil data" }, { status: 500 });
   }
 }
@@ -21,8 +21,8 @@ export async function POST(req: Request) {
     const cert = await prisma.certificate.create({
       data: {
         publisher: data.publisher,
-        yearGet: parseInt(data.yearGet), // ✅ convert ke Int
-        yearEnd: parseInt(data.yearEnd), // ✅ convert ke Int
+        yearGet: parseInt(data.yearGet),
+        yearEnd: parseInt(data.yearEnd),
         link: data.link,
         image: data.image,
         description: data.description,

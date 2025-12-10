@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-
+import Image from "next/image";
 import { Trash2Icon, PencilIcon, MoreVerticalIcon, PlusIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
@@ -229,8 +229,8 @@ export default function CertificatesPage() {
               <div key={project.id} className="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
 
                 {/* Gambar Kartu */}
-                <div className="relative">
-                  <img src={project.image} alt={project.publisher} className="w-full h-48 object-cover" />
+                <div className="relative h-48 w-full">
+                  <Image src={project.image} alt={project.name} layout="fill" objectFit="cover" />
                   <div className="absolute top-0 right-0 p-2">
                     <div className="relative">
                       <button onClick={() => toggleDropdown(project.id)} className="p-2 bg-black bg-opacity-40 rounded-full text-white hover:bg-opacity-60 transition text-black">

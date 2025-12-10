@@ -55,6 +55,7 @@ export async function DELETE(req: NextRequest, { params }: RouteContext) {
         });
         return NextResponse.json({ message: "Berhasil dihapus" });
     } catch (error) {
+        console.error("DELETE_PROJECT_ERROR:", error);
         return NextResponse.json({ error: "Gagal hapus data" }, { status: 500 });
     }
 }

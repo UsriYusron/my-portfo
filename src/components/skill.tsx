@@ -1,14 +1,21 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import Image from "next/image"
+
+interface Logo {
+  name: string;
+  content: string;
+  color: string;
+  image: string;
+  bg?: string;
+}
 
 export function Skill() {
   const [pausedRow, setPausedRow] = useState<string | null>(null)
 
   // Logo data with colors and content
-  const logos = [
+  const logos: Logo[] = [
     { name: "PHP", content: "image", color: "text-neutral-300", image: "/images/php.svg" },
     { name: "MongoDB", content: "image", color: "text-green-500", image: "/images/mongo.svg" },
     { name: "Next.js", content: "image", color: "text-neutral-300", image: "/images/next.svg" },
@@ -20,7 +27,7 @@ export function Skill() {
     { name: "MySQL", content: "image", color: "text-neutral-300", image: "/images/mysql.svg" },
   ]
 
-  const secondRowLogos = [
+  const secondRowLogos: Logo[] = [
     { name: "Taiwind", content: "image", color: "text-neutral-300", image: "/images/tailwind.svg" },
     { name: "Bootstrap", content: "image", color: "text-neutral-300", image: "/images/boot.svg" },
     { name: "HTML", content: "image", color: "text-neutral-300", image: "/images/html.svg" },
@@ -31,7 +38,7 @@ export function Skill() {
     { name: "MongoDB", content: "image", color: "text-green-500", image: "/images/mongo.svg" },
   ]
 
-  const LogoCard = ({ logo, rowId }: { logo: any; rowId: string }) => (
+  const LogoCard = ({ logo, rowId }: { logo: Logo; rowId: string }) => (
     <div
       className="flex-shrink-0 mx-3"
       onMouseEnter={() => setPausedRow(rowId)}

@@ -20,7 +20,7 @@ interface Certificate {
   title: string;
 }
 
-export function Certificate() {
+export default function Certificates() {
   const [certs, setCerts] = useState<Certificate[]>([]);
   const [showAll, setShowAll] = useState(false);
   const initialItemsToShow = 3;
@@ -41,7 +41,7 @@ export function Certificate() {
     <section className="">
       {/* Contact CTA */}
       <div className="container mx-auto">
-        <TextReveal>You&apos;ve scrolled this far but you&apos;re not sure for hiring me 🤔?</TextReveal>
+        <TextReveal>You've scrolled this far but you're not sure for hiring me 🤔?</TextReveal>
       </div>
 
       <div className="mx-auto max-w-3xl text-center" id="certificate">

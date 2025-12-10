@@ -29,12 +29,12 @@ function FeatureItem({ text, muted = false }: Feature) {
   )
 }
 
-export function Project() {
-  const [Projects, setProjects] = useState<Project[]>([]);
+export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
 
   const [showAll, setShowAll] = useState(false);
   const initialItemsToShow = 3;
-  const displayedProjects = showAll ? Projects : Projects.slice(0, initialItemsToShow);
+  const displayedProjects = showAll ? projects : projects.slice(0, initialItemsToShow);
 
   // Ambil semua data
   async function fetchProjects() {
@@ -63,7 +63,7 @@ export function Project() {
           {displayedProjects.map((project) => (
             <Card
               key={project.name}
-              className="relative overflow-hidden rounded-2xl liquid-glass shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-all duration-300"
+              className="relative overflow-hidden rounded-2xl liquid-glass shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-transform transition-shadow duration-300 hover:scale-105 hover:shadow-[0_20px_50px_rgba(0,0,0,0.4)]"
               itemScope
               itemType="https://schema.org/Offer"
             >
@@ -94,7 +94,7 @@ export function Project() {
           ))}
         </div>
 
-        {Projects.length > initialItemsToShow && (
+        {projects.length > initialItemsToShow && (
           <div className="mt-8 text-center">
             <Button onClick={() => setShowAll(!showAll)} variant="default">
               {showAll ? 'Hide Project' : 'See More...'}

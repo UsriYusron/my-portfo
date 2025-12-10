@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 export default function Loader() {
@@ -14,12 +14,6 @@ export default function Loader() {
     </StyledWrapper>
   );
 }
-
-const animate = keyframes`
-  to {
-    stroke-dashoffset: -100;
-  }
-`;
 
 const StyledWrapper = styled.div`
  position: fixed;

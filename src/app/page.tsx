@@ -5,8 +5,8 @@ import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/hero";
 import {Self} from "@/components/self";
 import { Skill } from "@/components/skill";
-import { Project } from "@/components/projects";
-import { Certificate } from "@/components/certificate";
+import Projects from "@/components/projects";
+import Certificates from "@/components/certificates";
 import {Footer} from "@/components/footer";
 import Loader from "@/components/Loader";
 import {Conf} from "@/components/end-confetti"
@@ -15,11 +15,8 @@ export default function Page() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // Simulate a 3 second loading time
-
-    return () => clearTimeout(timer);
+    // The content is ready, so we can stop loading.
+    setLoading(false);
   }, []);
 
   return (
@@ -32,8 +29,8 @@ export default function Page() {
           <Hero />
           <Self />
           <Skill />
-          <Project />
-          <Certificate />
+          <Projects />
+          <Certificates />
           <Conf />
           <Footer />
         </main>
